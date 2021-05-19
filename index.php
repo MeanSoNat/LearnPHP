@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +9,56 @@
     <title>Learn_PHP</title>
 </head>
 <body>
+# Include();
+<?php include('header.php'); ?>
+    
+    <section>
+        <p> 
+            asdsasdsa sfafasf gafadfdaf
+        </p>
+    </section>
+
+#Session<!-- ตัวแปรที่ใช้เก็บข้อมูลข้ามเพจหน้าเว็บ-->
+<?php 
+    $_SESSION['name'] = "Natty";
+    $_SESSION['car'] = "FORD";
+    
+?>
+    
+        <!-- $_GET, $_POST, $_REQUEST -->
+
+#_Request   <!-- รับข้อมูลจาก Form สามารถส่ง มาแบบ get/ post ก็ได้ -->
+    // call Action func to Input Name
+    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method = "Post">     
+        Name : <input type="text" name = "fName">
+        <input type="submit">
+    </form>
+    <br>
+
+# GET   <!-- รับข้อมูลที่ส่งมาจาก URL -->
+    <form action="test_get.php" method = "get">
+        Name : <input type="text" name = "name">
+        <br>
+        Email : <input type="text" name="Email">
+        <br>
+        <input type="submit">
+    </form>
+    <br>
+
+# Post  <!-- รับข้อมูลจาก Form -->
+    <form action="test_post.php" method = "post">
+        Name : <input type="text" name = "Name">
+        <br>
+        Email : <input type="text" name="email">
+        <br>
+        <input type="submit">
+    </form>
+
+
+
+
+<?php include('footer.php'); ?>
+    
     <?php 
         /* ! + Tab เรียกโครงสร้าง HTML @Line 1 */
         /* <?php write code here?> โครงสร้างของ php @Line 10*/ 
@@ -183,7 +235,32 @@
         echo "Variable from global is 10 and 15 <br>
                 and plus : $s + $y = " . $s + $y . "<br>";
     }
-    GlobalKey(); // call function Globalkey*/
+    GlobalKey(); // call function Globalkey
+    
+#Superglobal PHP
+
+    // superglobal variables
+        $GLOBALS
+        $_SERVER
+        $_REQUEST
+        $_POST
+        $_GET
+        $_FILES
+        $_ENV
+        $_COOKIE
+        $_SESSION
+
+        $x = 10;
+        $y = 5;
+
+        function Addtion(){
+            $GLOBALS['z'] = $GLOBALS['x'] + $GLOBALS['y'];
+        }
+        Addition();
+        echo $z;
+
+
+    */
 
     
 /*# Data Types
@@ -341,6 +418,7 @@ switch($Car){
 */
 
 #Array
+    /*
     $cars = array("Lambo", "Ford", "Ferrari");
     echo "My fav car is $cars[0] <br>";
     echo "Brand car have : " . count($cars);
@@ -378,7 +456,40 @@ switch($Car){
                 echo"<li>" . $Contain[$row][$col]. "</li>";
             }
         echo "</ul>";
+    }   */
+
+#Global
+    $x = 10;
+    $y = 5;
+    function Addtion(){
+        $GLOBALS['z'] = $GLOBALS['x'] + $GLOBALS['y'];
     }
+    Addtion();
+    echo $z;
+    echo "<br>";
+
+# _Server   //บอกลายระเอียด
+    echo $_SERVER['PHP_SELF'];  // ขอทราบที่อยู่ของ Path
+    echo "<br>";
+    echo $_SERVER['SERVER_NAME'];  // ขอทราบที่อยู่ของ Path
+    echo "<br>";
+    echo $_SERVER['HTTP_HOST'];  // ขอทราบที่อยู่ของ Path
+    echo "<br>";
+    echo $_SERVER['HTTP_USER_AGENT'];  // ขอทราบที่อยู่ของ Path
+    echo "<br>";
+    echo $_SERVER['SCRIPT_NAME'];  // ขอทราบที่อยู่ของ Path
+    echo "<br>";
+
+# _REQUEST
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $name = $_REQUEST['fName'];
+        if(empty($name)){
+            echo "Name is empty";
+        } else {
+            echo $name;
+        }
+    }
+
 
 
     ?>
